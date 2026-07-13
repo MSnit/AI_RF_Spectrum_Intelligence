@@ -1,4 +1,5 @@
 from src.noise.noise_generator import add_awgn
+from src.filters.digital_filters import low_pass_filter
 from src.signal_generation.signal_generator import generate_multi_tone_signal
 from src.signal_processing.fft_processor import compute_fft
 from src.visualization.plotter import (
@@ -22,16 +23,23 @@ noisy_signal = add_awgn(
     noise_std=0.3,
 )
 
-# Plot noisy signal
-plot_time_signal(
-    time,
+# Apply Low-Pass Filter
+filtered_signal = low_pass_filter(
     noisy_signal,
-    title="Noisy Time Domain Signal",
+    cutoff_frequency=2500,
+    sampling_rate=SAMPLING_RATE,
 )
 
-# Compute FFT of noisy signal
+# Plot filtered signal
+plot_time_signal(
+    time,
+    filtered_signal,
+    title="Filtered Time Domain Signal",
+)
+
+# Compute FFT
 frequencies, magnitude = compute_fft(
-    noisy_signal,
+    filtered_signal,
     SAMPLING_RATE,
 )
 
@@ -39,5 +47,5 @@ frequencies, magnitude = compute_fft(
 plot_frequency_spectrum(
     frequencies,
     magnitude,
-    title="Noisy Frequency Spectrum",
+    title="Filtered Frequency Spectrum",
 )
