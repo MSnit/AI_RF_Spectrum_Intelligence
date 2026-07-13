@@ -1,3 +1,4 @@
+from src.noise.noise_generator import add_awgn
 from src.signal_generation.signal_generator import generate_multi_tone_signal
 from src.signal_processing.fft_processor import compute_fft
 from src.visualization.plotter import (
@@ -7,7 +8,7 @@ from src.visualization.plotter import (
 
 SAMPLING_RATE = 10000
 
-# Generate signal
+# Generate multi-tone signal
 time, signal = generate_multi_tone_signal(
     frequencies=[1000, 2000, 3500],
     amplitudes=[1, 0.5, 0.8],
@@ -15,12 +16,28 @@ time, signal = generate_multi_tone_signal(
     duration=0.01,
 )
 
+# Add AWGN noise
+noisy_signal = add_awgn(
+    signal,
+    noise_std=0.3,
+)
 
-# Plot time-domain signal
-plot_time_signal(time, signal)
+# Plot noisy signal
+plot_time_signal(
+    time,
+    noisy_signal,
+    title="Noisy Time Domain Signal",
+)
 
-# Compute FFT
-frequencies, magnitude = compute_fft(signal, SAMPLING_RATE)
+# Compute FFT of noisy signal
+frequencies, magnitude = compute_fft(
+    noisy_signal,
+    SAMPLING_RATE,
+)
 
 # Plot frequency spectrum
-plot_frequency_spectrum(frequencies, magnitude)
+plot_frequency_spectrum(
+    frequencies,
+    magnitude,
+    title="Noisy Frequency Spectrum",
+)
