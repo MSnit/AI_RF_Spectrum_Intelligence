@@ -29,7 +29,7 @@ def plot_time_signal(
 
     plt.tight_layout()
 
-    plt.show()
+    return plt.gcf()
 
 
 def plot_frequency_spectrum(
@@ -53,4 +53,4 @@ def plot_frequency_spectrum(
 
     plt.tight_layout()
 
-    plt.show()
+    return plt.gcf()

@@ -28,4 +28,4 @@ def plot_spectrogram(signal, sampling_rate):
     plt.colorbar(label="Power (dB)")
 
     plt.tight_layout()
-    plt.show()
+    return plt.gcf()
