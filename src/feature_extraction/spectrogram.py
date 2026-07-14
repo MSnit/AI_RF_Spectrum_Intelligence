@@ -15,12 +15,12 @@ def plot_spectrogram(signal, sampling_rate):
     plt.figure(figsize=(10, 5))
 
     plt.specgram(
-        signal,
-        Fs=sampling_rate,
-        NFFT=128,
-        noverlap=64,
-        cmap="viridis",
-    )
+    signal,
+    Fs=sampling_rate,
+    NFFT=64,
+    noverlap=32,
+    cmap="viridis",
+)
 
     plt.title("Signal Spectrogram")
     plt.xlabel("Time (seconds)")

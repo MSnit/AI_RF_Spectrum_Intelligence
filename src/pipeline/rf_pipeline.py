@@ -1,3 +1,9 @@
+"""
+rf_pipeline.py
+
+Complete RF signal processing pipeline.
+"""
+
 from src.signal_generation.signal_generator import generate_multi_tone_signal
 from src.noise.noise_generator import add_awgn
 from src.filters.digital_filters import low_pass_filter
@@ -13,10 +19,15 @@ def run_pipeline(
     duration=0.01,
 ):
     """
-    Complete RF signal processing pipeline.
+    Run the complete RF signal processing pipeline.
+
+    Returns
+    -------
+    dict
+        Dictionary containing all intermediate and final results.
     """
 
-    # Generate RF signal
+    # Generate multi-tone RF signal
     time, signal = generate_multi_tone_signal(
         frequencies=frequencies,
         amplitudes=amplitudes,
@@ -24,7 +35,7 @@ def run_pipeline(
         duration=duration,
     )
 
-    # Add noise
+    # Add AWGN noise
     noisy_signal = add_awgn(
         signal,
         noise_std=noise_std,
@@ -37,7 +48,7 @@ def run_pipeline(
         sampling_rate=sampling_rate,
     )
 
-    # FFT
+    # Compute FFT
     fft_frequencies, magnitude = compute_fft(
         filtered_signal,
         sampling_rate,
