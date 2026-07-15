@@ -30,6 +30,7 @@ signal_type = st.sidebar.selectbox(
         "MULTI_TONE",
         "BPSK",
         "QPSK",
+        "QAM",
     ],
 )
 
