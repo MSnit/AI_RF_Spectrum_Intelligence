@@ -6,6 +6,10 @@ from src.communication.bpsk import (
     generate_bpsk_signal,
 )
 
+from src.communication.qpsk import (
+    generate_qpsk_signal,
+)
+
 from src.noise.noise_generator import add_awgn
 from src.filters.digital_filters import low_pass_filter
 from src.signal_processing.fft_processor import compute_fft
@@ -81,5 +85,6 @@ def run_pipeline(
         "magnitude": magnitude,
 
     }
+
 
     

@@ -24,12 +24,12 @@ st.title("📡 AI-Powered RF Spectrum Intelligence Platform")
 # --------------------------------------------------
 
 st.sidebar.header("Signal Configuration")
-
 signal_type = st.sidebar.selectbox(
     "Signal Type",
     [
         "MULTI_TONE",
         "BPSK",
+        "QPSK",
     ],
 )
 
@@ -174,4 +174,4 @@ if run:
 
     st.pyplot(fig3)
 
-    "QPSK",
+   
