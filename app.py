@@ -31,6 +31,7 @@ signal_type = st.sidebar.selectbox(
         "BPSK",
         "QPSK",
         "QAM",
+        "OFDM",
     ],
 )
 

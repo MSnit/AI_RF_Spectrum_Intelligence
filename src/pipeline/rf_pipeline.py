@@ -14,6 +14,7 @@ from src.noise.noise_generator import add_awgn
 from src.filters.digital_filters import low_pass_filter
 from src.signal_processing.fft_processor import compute_fft
 from src.communication.qam import generate_qam_signal
+from src.communication.ofdm import generate_ofdm_signal
 
 
 def run_pipeline(
@@ -54,6 +55,13 @@ def run_pipeline(
     elif signal_type == "QAM":
 
         time, signal, _ = generate_qam_signal(
+            carrier_frequency=1000,
+            sampling_rate=sampling_rate,
+    )
+        
+    elif signal_type == "OFDM":
+
+        time, signal = generate_ofdm_signal(
             carrier_frequency=1000,
             sampling_rate=sampling_rate,
     )
