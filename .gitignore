@@ -21,3 +21,7 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
+
+ai_dataset/
+trained_models/
+__pycache__/

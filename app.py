@@ -1,6 +1,17 @@
 import streamlit as st
 
 from src.pipeline.rf_pipeline import run_pipeline
+from src.ai_models.predict import predict_signal
+import tensorflow as tf
+import numpy as np
+import io
+import numpy as np
+
+from PIL import Image
+
+from src.ai_models.predict import (
+    predict_signal,
+)
 
 from src.visualization.plotter import (
     plot_time_signal,
@@ -176,4 +187,57 @@ if run:
 
     st.pyplot(fig3)
 
+    st.subheader("AI Prediction")
+
    
+
+    buffer = io.BytesIO()
+
+fig3.savefig(
+    buffer,
+    format="png"
+)
+
+buffer.seek(0)
+
+image = Image.open(
+    buffer
+)
+
+image = image.resize(
+    (224, 224)
+)
+
+image = np.array(
+    image
+)
+
+# Remove alpha channel if present
+if image.shape[-1] == 4:
+    image = image[:, :, :3]
+
+# Add batch dimension
+image = np.expand_dims(
+    image,
+    axis=0,
+)
+
+prediction, confidence = predict_signal(
+    image
+)
+
+st.success(
+
+    f"Detected Signal : {prediction}"
+
+)
+
+
+st.metric(
+
+    "Confidence Score",
+
+    f"{confidence:.2f}%",
+
+)
+
